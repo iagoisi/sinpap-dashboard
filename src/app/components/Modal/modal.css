@@ -1,0 +1,120 @@
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  /* top: 0; */
+  /* left: 0; */
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px 0 0 0;
+}
+
+.modal h2 {
+  margin-bottom: 10px;
+}
+
+.container-modal {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(9, 9, 9, 0.9);
+  border-radius: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000;
+  width: 80%;
+  height: 80%;
+}
+
+.close {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+}
+
+.close:before, .close:after {
+  content: '';
+  position: absolute;
+  width: 2.5px;
+  height: 24px;
+  background-color: #fff;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
+}
+
+
+.modal-schadule {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.grup-form-1 {
+  margin-right: 50px;
+}
+
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.form-wrapper form {
+  display: flex;
+  height: 400px;  
+}
+
+.form-wrapper label {
+  display: flex;
+  text-align: left;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.form-wrapper input {
+  margin-bottom: 5px;
+  width: 200px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  color: #000;
+}
+
+.form-wrapper button {
+  display: flex;
+  align-self: flex-end;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  border-radius: 7px;
+  border: none;
+  color: #000;
+  background: #44AB20;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}

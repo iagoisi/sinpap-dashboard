@@ -1,0 +1,35 @@
+textarea[type=text], textarea[type=email], textarea[type=password] {
+  border-radius: 20px;
+  color: #161616;
+  padding: 10px;
+  letter-spacing: 0.08rem;
+  font-size: 14px;
+  width: 400px;
+  height: 140px;
+  /* margin-bottom: 20px; */
+}
+
+textarea[type=text]:focus, textarea[type=email]:focus, textarea[type=password]:focus {
+  border: none;
+  outline: none;
+  border: solid 5px #44AB20;
+  /* border-radius: 200px; */
+}
+
+
+textarea[type=text]::placeholder, textarea[type=email]::placeholder, textarea[type=password]::placeholder {
+  padding: 10px;
+  font-size: 16px;
+  color: grey;
+}
+
+.div-textarea {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  font-size: 14px;
+  border: 0px;
+}
+

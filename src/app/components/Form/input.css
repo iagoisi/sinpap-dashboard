@@ -1,0 +1,42 @@
+input[type=text], input[type=email], input[type=password] {
+  border: solid 2px #44AB20;
+  color: #161616;
+  padding: 10px;
+  letter-spacing: 0.08rem;
+  font-size: 14px;
+  min-width: 300px;
+  /* margin-bottom: 20px; */
+}
+
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus {
+  border: none;
+  outline: none;
+  border: solid 5px #44AB20;
+  /* border-radius: 200px; */
+}
+
+
+input[type=text]::placeholder, input[type=email]::placeholder, input[type=password]::placeholder {
+  padding: 10px;
+  font-size: 16px;
+  color: grey;
+}
+
+.div-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  font-size: 14px;
+  border: 0px;
+}
+
+
+.div-input span {
+  max-width: 200px;
+  display: flex;
+  text-align: left;
+  /* justify-content: start; */
+}
+
