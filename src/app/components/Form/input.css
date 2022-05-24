@@ -4,7 +4,7 @@ input[type=text], input[type=email], input[type=password] {
   padding: 10px;
   letter-spacing: 0.08rem;
   font-size: 14px;
-  min-width: 300px;
+  min-width: 230px;
   /* margin-bottom: 20px; */
 }
 
@@ -21,6 +21,11 @@ input[type=text]::placeholder, input[type=email]::placeholder, input[type=passwo
   font-size: 16px;
   color: grey;
 }
+
+.schaduleInput {
+  padding: 10px 20px 0 20px;
+}
+
 
 .div-input {
   display: flex;

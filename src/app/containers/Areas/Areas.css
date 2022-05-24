@@ -4,21 +4,26 @@
   /* margin-top: 20px; */
 }
 
-
-.box-content-membros {
-  display: flex;
-  justify-content: center;
-  width: 800px;
-  height: 100vh;
+.areas-list {
+  height: 80%;
+  width: 90%;
 }
 
-.ul-content-membros {
-  /* background: black; */
+
+.box-content-areas {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  height: 85vh;
+}
+
+.ul-content-areas {
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: flex-start;
   width: 100%;
+  height: 75%;
 }
 
 .ul-content-membros li p {
@@ -58,8 +63,8 @@
 .modal-box-membros {
   display: flex;
   flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  margin-bottom: 20px;
   /* width: 100%; */
   /* margin-bottom: -10px; */
 }
@@ -78,3 +83,8 @@
   border: #fff 3px dashed;
 } */
 
+.grup-form-1-areas {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}

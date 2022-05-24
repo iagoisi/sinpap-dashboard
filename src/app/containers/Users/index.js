@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 // import { Link } from 'react-router-dom';
 import './Users.css';
-import Pagination from '../../components/Pagination';
+import { DataGrid } from '@mui/x-data-grid'
+// import Pagination from '../../components/Pagination';
 import SelectPagination from '../../components/SelectPagination';
 import { FiPlus } from "react-icons/fi";
 
@@ -96,9 +97,17 @@ export default function Users() {
           
     } 
 
+
+    const columns = [
+      { field: 'id', headerName: 'ID' },
+      { field: 'name', headerName: 'Nome', width: 200 },
+      { field: 'email', headerName: 'E-mail', width: 200 },
+      { field: 'id_perito', headerName: 'N˚ de registro', width: 200 }
+    ]
+
     return (
       <>
-      {isModalVisible ? 
+      {isModalVisible ?
         <Modal onClose={() => setIsModalVisible(false)}>
           <h2>Cadastrar Novo Usuário</h2>
         <div className='form-wrapper'>
@@ -132,23 +141,31 @@ export default function Users() {
             </div>
           </Form>
         </div>
-        </Modal> : null}
+        </Modal>   : null}
+        
         
         <div className='users-lists'>
-          <Titulo tipo="h1" titulo="Usuários" />
+          <Titulo tipo="h1" titulo="Filiados" />
           <SelectPagination itensPerPage={itensPerPage} setItensPerPage={setItensPerPage}/>
           <div className='box-content'>
             <ul className='ul-content'>
-            {currentItens.map(users => (
+              <DataGrid 
+                rows={itens}
+                columns={columns}
+                pageSize={itensPerPage}
+              />
+
+              
+            {/* {currentItens.map(users => (
               <li key={users.id}>
                 <p>{users.id}</p>
                 <p>{users.name}</p>
                 <p>{users.email}</p>
                 <p>{users.status}</p>
               </li>
-            ))}
+            ))} */}
             </ul>
-            <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+            {/* <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
             <FiPlus onClick={() => setIsModalVisible(true)} className='plus-icon'/>
           </div>   
         </div>

@@ -3,13 +3,13 @@ import * as FiIcons from 'react-icons/fi';
 
 export const NavbarData = [
   {
-    title: 'Usuários',
+    title: 'Filiados',
     path: '/users',
     icon: <FiIcons.FiUser />,
     cName: 'nav-text'
   },
   {
-    title: 'Membros',
+    title: 'Posts',
     path: '/pagina-01',
     icon: <FiIcons.FiUsers />,
     cName: 'nav-text'

@@ -25,6 +25,7 @@ export const DropContainer = styled.div`
   border-radius: 4px;
   padding: 10px;
   cursor: pointer;
+  height: 40px;
 
   transition: height 0.2s ease;
 `;
