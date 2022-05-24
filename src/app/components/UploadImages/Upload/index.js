@@ -27,7 +27,7 @@ export default function Upload() {
     isDragFocused
   } = useDropzone({
     accept: 'image/*',
-    maxFiles: 3,
+    maxFiles: 1,
     onDrop: acceptedFiles => {
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         file,
@@ -99,10 +99,15 @@ export default function Upload() {
   }, [files]);
 
 
+  const imagesToParent = () => {
+    handleSubmit(files)
+  }
+
+
   return(
     <>
-      <DropContainer 
-        {...getRootProps({ isDragAccept, isDragReject, isDragFocused })}>      
+      <DropContainer
+        {...getRootProps({ isDragAccept, isDragReject, isDragFocused, imagesToParent })}>      
         <input {...getInputProps()} />
         {isDragFocused && (<UploadMessage>haha</UploadMessage>)}
         {!isDragAccept && !isDragReject && (<UploadMessage>Arraste e solte seu aquivos aqui...</UploadMessage>)}

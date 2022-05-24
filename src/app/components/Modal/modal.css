@@ -3,9 +3,9 @@
   width: 100%;
   height: 100vh;
   position: absolute;
-  /* top: 0; */
-  /* left: 0; */
-  z-index: 100;
+  /* top: 50%; */
+  /* left: 50%; */
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@
 }
 
 .modal h2 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .container-modal {
@@ -22,13 +22,13 @@
   flex-direction: column;
   background-color: rgba(9, 9, 9, 0.9);
   border-radius: 30px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   text-align: center;
   color: #000;
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 70%;
 }
 
 .close {
@@ -42,6 +42,7 @@
   height: 32px;
   border: none;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .close:before, .close:after {
@@ -75,7 +76,6 @@
 .form-wrapper {
   display: flex;
   justify-content: center;
-  padding: 30px;
 }
 
 .form-wrapper form {

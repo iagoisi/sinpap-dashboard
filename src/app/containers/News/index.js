@@ -4,9 +4,11 @@ import './News.css';
 import api from '../../../services/api';
 
 import Titulo from '../../components/Texto/Titulo';
-import Pagination from '../../components/Pagination';
+// import Pagination from '../../components/Pagination';
 
 import Modal from '../../components/Modal';
+import { DataGrid } from '@mui/x-data-grid'
+import SelectPagination from '../../components/SelectPagination';
 
 
 import { FiPlus } from 'react-icons/fi';
@@ -21,7 +23,7 @@ export default function News() {
 const [news, setNews] = useState([]);
 
 // Pagination
-const [itensPerPage, setItensPerPage] = useState(5);
+const [itensPerPage, setItensPerPage] = useState(10);
 const [currentPage, setCurrentPage] = useState(0);
 
 const pages = Math.ceil(news.length / itensPerPage);
@@ -49,22 +51,29 @@ useEffect(() => {
 const [isModalVisible, setIsModalVisible] = useState(false);
 
 
+const columns = [
+  { field: 'id', headerName: 'ID' },
+  { field: 'image_blog', headerName: 'Imagem', width: 200 },
+  { field: 'titulo', headerName: 'Título' },
+  { field: 'texto', headerName: 'Texto', width: 200 },
+  // { field: 'link', headerName: 'Link', width: 200 }
+]
+
+
 return (
   <>
     <div className='news-lists'>
       <Titulo tipo="h1" titulo="Notícias" />
-      <div className='box-content'>
-        <ul className='ul-content'>
-        {currentItens.map(news => (
-          <li key={news.id}>
-            <p>{news.id}</p>
-            <p>{news.titulo}</p>
-            <p>{news.texto}</p>
-            <p>{news.createdDate}</p>
-          </li>
-        ))}
+      <SelectPagination itensPerPage={itensPerPage} setItensPerPage={setItensPerPage}/>
+      <div className='box-content-news'>
+        <ul className='ul-content-news'>
+          <DataGrid 
+            rows={news}
+            columns={columns}
+            pageSize={itensPerPage}
+          />
         </ul>
-        <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        {/* <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
         <FiPlus onClick={() => setIsModalVisible(true)} className='plus-icon'/>
       </div>      
     </div>

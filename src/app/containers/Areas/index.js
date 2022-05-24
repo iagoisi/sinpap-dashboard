@@ -10,7 +10,11 @@ import Upload from '../../components/UploadImages/Upload';
 // import { Link } from 'react-router-dom';
 import Titulo from '../../components/Texto/Titulo';
 
-import Pagination from '../../components/Pagination';
+import { DataGrid } from '@mui/x-data-grid'
+// import Pagination from '../../components/Pagination';
+import SelectPagination from '../../components/SelectPagination';
+
+
 
 import * as Yup from 'yup';
 
@@ -32,7 +36,7 @@ export default function Posts() {
 const [posts, setPosts] = useState([]);
 
 // Pagination
-const [itensPerPage, setItensPerPage] = useState(5);
+const [itensPerPage, setItensPerPage] = useState(10);
 const [currentPage, setCurrentPage] = useState(0);
 
 const pages = Math.ceil(posts.length / itensPerPage);
@@ -63,40 +67,54 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 const formRef = useRef(null); 
 
 async function handleSubmit(data, { reset }) {
-  try {
-    const schemaMembros = Yup.object().shape({
-      name: Yup.string().required('O nome obrigatório'),
-      email: Yup.string().email().required('O e-mail é obrigatório'),
-      id_perito: Yup.string().min(7).required('Número de registro é obrigatório'),
-      password: Yup.string().min(6, 'Minímo de 6 caracteres').required('A senha é obrigatória'),
-      confirm_password: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'As senhas estão diferentes'),
-    });
-    await schemaMembros.validate(data, {
-      abortEarly: false,
-    });
-    //create user
-    await api.post('/post', data)
-      .then(function(res) {
-        console.log(res);
-      })
-      .catch(function(err) {
-        console.log(err)
-      })
-    // Validation passed
-    console.log(data);
-    reset();
-  } catch (err) {
-    const validationErrors = {};
-    if (err instanceof Yup.ValidationError) {
-      err.inner.forEach(error => {
-        validationErrors[error.path] = error.message;
-      });
-      formRef.current.setErrors(validationErrors);
-    }
-  }    
+  console.log(data);
+  
+  // try {
+  //   const schemaMembros = Yup.object().shape({
+  //     name: Yup.string().required('O nome obrigatório'),
+  //     email: Yup.string().email().required('O e-mail é obrigatório'),
+  //     id_perito: Yup.string().min(7).required('Número de registro é obrigatório'),
+  //     password: Yup.string().min(6, 'Minímo de 6 caracteres').required('A senha é obrigatória'),
+  //     confirm_password: Yup.string()
+  //     .oneOf([Yup.ref('password'), null], 'As senhas estão diferentes'),
+  //   });
+  //   await schemaMembros.validate(data, {
+  //     abortEarly: false,
+  //   });
+  //   //create user
+  //   await api.post('/post', data)
+  //     .then(function(res) {
+  //       console.log(res);
+  //     })
+  //     .catch(function(err) {
+  //       console.log(err)
+  //     })
+  //   // Validation passed
+  //   console.log(data);
+  //   reset();
+  // } catch (err) {
+  //   const validationErrors = {};
+  //   if (err instanceof Yup.ValidationError) {
+  //     err.inner.forEach(error => {
+  //       validationErrors[error.path] = error.message;
+  //     });
+  //     formRef.current.setErrors(validationErrors);
+  //   }
+  // }    
 } 
 
+const [ data, setData ] = useState('');
+const childToParent = (childData) => {
+  setData(childData)
+}
+
+const columns = [
+  { field: 'id', headerName: 'ID' },
+  { field: 'image_post', headerName: 'Imagem', width: 200 },
+  { field: 'title', headerName: 'Título' },
+  { field: 'text', headerName: 'Texto', width: 200 },
+  { field: 'link', headerName: 'Link', width: 200 }
+]
 
 return (
   <>
@@ -107,13 +125,27 @@ return (
           <Form ref={formRef} onSubmit={handleSubmit}>
             <div className='modal-schadule-membros'>
               <div className='modal-box-membros'>
-                  <label htmlFor="for">Título</label>
-                    <Input className='input' type='text'name='title'/>
+                <div className='grup-form-1-areas'>
+                  <div className='schaduleInput'>
+                    <label htmlFor="for">Título</label>
+                      <Input className='input' type='text'name='title'/>
+                  </div>
+                  <div className='schaduleInput'>
+                    <label htmlFor="for">Link</label>
+                      <Input className='input' type='text'name='link'/>
+                  </div>
+                </div>
+                <div className='grup-form-2'>
                   <label htmlFor="for">Texto</label>
                     <Textarea className='input' type='text' name='text'/>
+                    <label>
+
+                    </label>
+                    {/* <input type='file' id='image[]' /> */}
+                    <Upload handleSubmit={handleSubmit}/>
+                </div>
               </div>
 
-              <Upload />
               {/* <FileList /> */}
               {/* <div className='upload_img'>              
                   Clique aqui ou arraste sua imagem
@@ -126,20 +158,18 @@ return (
         </Modal> : null}
 
 
-    <div className='posts-lists'>
-      <Titulo tipo="h1" titulo="Área de Membros" />
-      <div className='box-content'>
-        <ul className='ul-content'>
-        {currentItens.map(post => (
-          <li key={post.id}>
-            <p>{post.id}</p>
-            <p>{post.title}</p>
-            <p>{post.link}</p>
-            <p>{post.createdDate}</p>
-          </li>
-        ))}
+    <div className='areas-list'>
+      <Titulo tipo="h1" titulo="Posts na Área de Membros" />
+      <SelectPagination itensPerPage={itensPerPage} setItensPerPage={setItensPerPage}/>
+      <div className='box-content-areas'>
+        <ul className='ul-content-areas'>
+          <DataGrid 
+            rows={posts}
+            columns={columns}
+            pageSize={itensPerPage}
+          />
         </ul>
-        <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        {/* <Pagination pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage}/> */}
         <FiPlus onClick={() => setIsModalVisible(true)} className='plus-icon'/>
       </div>
     </div>
